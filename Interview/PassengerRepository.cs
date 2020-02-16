@@ -22,7 +22,7 @@ namespace Interview
 
         public Passenger Get(int id)
         {
-            throw new NotImplementedException();
+            return (from g in _passengerList where g.Id == id select g).First();
         }
 
         public IEnumerable<Passenger> GetAll()
