@@ -11,9 +11,9 @@ namespace Interview
     {
         readonly ICollection<Passenger> _passengerList;
 
-        public PassengerRepository()
+        public PassengerRepository(ICollection<Passenger> passengersList)
         {
-            _passengerList = new List<Passenger>();
+            _passengerList = passengersList;
         }
         public virtual void Delete(int id)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
@@ -12,7 +13,7 @@ namespace Interview.Tests
         public void Repository_Constructoy_CreatesEmptyRepository()
         {
             //Arrange
-            var repository = new PassengerRepository();
+            var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
             var res = repository.GetAll();
@@ -24,7 +25,7 @@ namespace Interview.Tests
         public void Repository_Save_StoresTheItemAddedToList()
         {
             //Arrange
-            var repository = new PassengerRepository();
+            var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
             var passenger = new Passenger();
@@ -39,7 +40,7 @@ namespace Interview.Tests
         public void Repository_Get_ReturnsTheItemAddedToRepository()
         {
             //Arrange
-            var repository = new PassengerRepository();
+            var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
             int passengerId = 2;
@@ -55,7 +56,7 @@ namespace Interview.Tests
         public void Repository_Delete_DeletesAGivenItemFromRepository()
         {
             //Arrange
-            var repository = new PassengerRepository();
+            var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
             int passengerId1 = 1;
@@ -81,7 +82,7 @@ namespace Interview.Tests
         public void Repisitory_Save_DuplicateIdValueAddedToRepository()
         {
             //Arrange 
-            var repository = new PassengerRepository();
+            var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
             int passengerId1 = 1;
@@ -98,7 +99,7 @@ namespace Interview.Tests
         public void Repisitory_Save_NullItemPassedToSave()
         {
             //Arrange 
-            var repository = new PassengerRepository();
+            var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
             //Assert
@@ -109,7 +110,7 @@ namespace Interview.Tests
         public void Repository_Get_IdPassedToGetDoesNotExit()
         {
             //Arrange
-            var repository = new PassengerRepository();
+            var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
             var res = repository.Get(-1);
@@ -122,7 +123,7 @@ namespace Interview.Tests
         public void Repository_Delete_NonExisingIdPassed()
         {
             //Arrange
-            var repository = new PassengerRepository();
+            var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
             //Assert
