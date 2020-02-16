@@ -51,5 +51,31 @@ namespace Interview.Tests
             var itemAddedInRepository = repository.Get(passengerId);
             Assert.AreEqual(itemAddedInRepository.Id, passengerId);
         }
+        [TestMethod]
+        public void Repository_Delete_DeletesAGivenItemFromRepository()
+        {
+            //Arrange
+            var repository = new PassengerRepository();
+
+            //Act
+            int passengerId1 = 1;
+            int passengerId2 = 2;
+            var passenger1 = new Passenger { Id = passengerId1 };
+            var passenger2 = new Passenger { Id = passengerId2 };
+
+            repository.Save(passenger1);
+            repository.Save(passenger2);
+
+            var numItemsInRepositoryAferSave = repository.GetAll().Count();
+
+            repository.Delete(passengerId1);
+
+            var numItemsInRepositoryAferDelete = repository.GetAll().Count();
+
+            //Assert
+            Assert.AreEqual(numItemsInRepositoryAferSave, 2);
+            Assert.AreEqual(numItemsInRepositoryAferDelete, 1);
+
+        }
     }
 }
