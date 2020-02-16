@@ -17,7 +17,8 @@ namespace Interview
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var passenger = from g in _passengerList where g.Id == id select g;
+            _passengerList.Remove(passenger.First());
         }
 
         public Passenger Get(int id)
