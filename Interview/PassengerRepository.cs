@@ -33,6 +33,9 @@ namespace Interview
 
         public void Save(Passenger item)
         {
+            if (item == null)
+                throw new ArgumentNullException("item");
+
             if ((from g in _passengerList where g.Id == item.Id select g).Count() != 0)
                 throw new InvalidOperationException("Item Id already exists");
 
