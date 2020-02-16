@@ -94,6 +94,16 @@ namespace Interview.Tests
             //Assert
             Assert.Throws<InvalidOperationException>(() => repository.Save(passenger2));
         }
+        [Test]
+        public void Repisitory_Save_NullItemPassedToSave()
+        {
+            //Arrange 
+            var repository = new PassengerRepository();
+
+            //Act
+            //Assert
+            Assert.Throws<ArgumentNullException>(() => repository.Save(null));
+        }
 
     }
 }
