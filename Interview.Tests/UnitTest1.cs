@@ -118,5 +118,16 @@ namespace Interview.Tests
             Assert.AreEqual(res, null);
         }
 
+        [Test]
+        public void Repository_Delete_NonExisingIdPassed()
+        {
+            //Arrange
+            var repository = new PassengerRepository();
+
+            //Act
+            //Assert
+            Assert.Throws<InvalidOperationException>(() => repository.Delete(100));
+        }
+
     }
 }

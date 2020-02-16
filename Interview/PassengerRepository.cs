@@ -9,7 +9,7 @@ namespace Interview
 
     public class PassengerRepository : IRepository<Passenger, int>
     {
-        List<Passenger> _passengerList;
+        readonly List<Passenger> _passengerList;
 
         public PassengerRepository()
         {
@@ -17,13 +17,23 @@ namespace Interview
         }
         public void Delete(int id)
         {
-            var passenger = from g in _passengerList where g.Id == id select g;
-            _passengerList.Remove(passenger.First());
+            //var passenger = from g in _passengerList where g.Id == id select g;
+            var passenger = Get(id);
+
+            if (passenger!= null)
+                _passengerList.Remove(passenger);
+            else
+                throw new InvalidOperationException($"Item with id {id} does not exist");
         }
 
         public Passenger Get(int id)
-        {
-            return (from g in _passengerList where g.Id == id select g).First();
+        { 
+            var res = from g in _passengerList where g.Id == id select g;
+
+            if (!res.Any())
+                return null;
+            else
+                return res.First();
         }
 
         public IEnumerable<Passenger> GetAll()
