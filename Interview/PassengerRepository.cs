@@ -15,9 +15,8 @@ namespace Interview
         {
             _passengerList = new List<Passenger>();
         }
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
-            //var passenger = from g in _passengerList where g.Id == id select g;
             var passenger = Get(id);
 
             if (passenger!= null)
@@ -26,7 +25,7 @@ namespace Interview
                 throw new InvalidOperationException($"Item with id {id} does not exist");
         }
 
-        public Passenger Get(int id)
+        public virtual Passenger Get(int id)
         { 
             var res = from g in _passengerList where g.Id == id select g;
 
@@ -36,12 +35,12 @@ namespace Interview
                 return res.First();
         }
 
-        public IEnumerable<Passenger> GetAll()
+        public virtual IEnumerable<Passenger> GetAll()
         {
             return _passengerList;
         }
 
-        public void Save(Passenger item)
+        public virtual void Save(Passenger item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
