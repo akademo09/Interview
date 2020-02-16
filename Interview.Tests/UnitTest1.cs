@@ -105,5 +105,18 @@ namespace Interview.Tests
             Assert.Throws<ArgumentNullException>(() => repository.Save(null));
         }
 
+        [Test]
+        public void Repository_Get_IdPassedToGetDoesNotExit()
+        {
+            //Arrange
+            var repository = new PassengerRepository();
+
+            //Act
+            var res = repository.Get(-1);
+
+            //Assert
+            Assert.AreEqual(res, null);
+        }
+
     }
 }
