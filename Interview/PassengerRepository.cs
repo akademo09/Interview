@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Interview
 {
 
-    public class Repository : IRepository<Passenger, int>
+    public class PassengerRepository : IRepository<Passenger, int>
     {
         public void Delete(int id)
         {
