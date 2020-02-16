@@ -32,7 +32,7 @@ namespace Interview.Tests
             repository.Save(passenger);
 
             //Assert
-            var numItemsInRepository = repository.GetAll();
+            var numItemsInRepository = repository.GetAll().Count();
             Assert.AreEqual(numItemsInRepository, 1);
         }
     }

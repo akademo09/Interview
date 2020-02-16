@@ -9,6 +9,12 @@ namespace Interview
 
     public class PassengerRepository : IRepository<Passenger, int>
     {
+        List<Passenger> _passengerList;
+
+        public PassengerRepository()
+        {
+            _passengerList = new List<Passenger>();
+        }
         public void Delete(int id)
         {
             throw new NotImplementedException();
@@ -21,12 +27,12 @@ namespace Interview
 
         public IEnumerable<Passenger> GetAll()
         {
-            return Enumerable.Empty<Passenger>();
+            return _passengerList;
         }
 
         public void Save(Passenger item)
         {
-            throw new NotImplementedException();
+            _passengerList.Add(item);
         }
     }
 }
