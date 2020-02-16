@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Interview.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class RepositoryTests
 
     {
-        [TestMethod]
+        [Test]
         public void Repository_Constructoy_CreatesEmptyRepository()
         {
             //Arrange
@@ -20,7 +20,7 @@ namespace Interview.Tests
             //Assert
             Assert.AreEqual(res.ToList().Count(), 0);
         }
-        [TestMethod]
+        [Test]
         public void Repository_Save_StoresTheItemAddedToList()
         {
             //Arrange
@@ -35,7 +35,7 @@ namespace Interview.Tests
             var numItemsInRepository = repository.GetAll().Count();
             Assert.AreEqual(numItemsInRepository, 1);
         }
-        [TestMethod]
+        [Test]
         public void Repository_Get_ReturnsTheItemAddedToRepository()
         {
             //Arrange
@@ -51,7 +51,7 @@ namespace Interview.Tests
             var itemAddedInRepository = repository.Get(passengerId);
             Assert.AreEqual(itemAddedInRepository.Id, passengerId);
         }
-        [TestMethod]
+        [Test]
         public void Repository_Delete_DeletesAGivenItemFromRepository()
         {
             //Arrange
@@ -77,5 +77,23 @@ namespace Interview.Tests
             Assert.AreEqual(numItemsInRepositoryAferDelete, 1);
 
         }
+        [Test]
+        public void Repisitory_Save_DuplicateIdValueAddedToRepository()
+        {
+            //Arrange 
+            var repository = new PassengerRepository();
+
+            //Act
+            int passengerId1 = 1;
+            int passengerId2 = 1;
+            var passenger1 = new Passenger { Id = passengerId1 };
+            var passenger2 = new Passenger { Id = passengerId2 };
+
+            repository.Save(passenger1);
+
+            //Assert
+            Assert.Throws<InvalidOperationException>(() => repository.Save(passenger2));
+        }
+
     }
 }
