@@ -35,5 +35,21 @@ namespace Interview.Tests
             var numItemsInRepository = repository.GetAll().Count();
             Assert.AreEqual(numItemsInRepository, 1);
         }
+        [TestMethod]
+        public void Repository_Get_ReturnsTheItemAddedToRepository()
+        {
+            //Arrange
+            var repository = new PassengerRepository();
+
+            //Act
+            int passengerId = 2;
+            var passenger = new Passenger();
+            passenger.Id = passengerId;
+            repository.Save(passenger);
+
+            //Assert
+            var itemAddedInRepository = repository.Get(passengerId);
+            Assert.AreEqual(itemAddedInRepository.Id, passengerId);
+        }
     }
 }
