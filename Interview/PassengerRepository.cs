@@ -9,7 +9,7 @@ namespace Interview
 
     public class PassengerRepository : IRepository<Passenger, int>
     {
-        readonly List<Passenger> _passengerList;
+        readonly ICollection<Passenger> _passengerList;
 
         public PassengerRepository()
         {
