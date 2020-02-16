@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework;
 
@@ -19,7 +20,7 @@ namespace Interview.Tests
             var res = repository.GetAll();
 
             //Assert
-            Assert.AreEqual(res.ToList().Count(), 0);
+            Assert.AreEqual(0, res.ToList().Count());
         }
         [Test]
         public void Repository_Save_StoresTheItemAddedToList()
@@ -34,7 +35,7 @@ namespace Interview.Tests
 
             //Assert
             var numItemsInRepository = repository.GetAll().Count();
-            Assert.AreEqual(numItemsInRepository, 1);
+            Assert.AreEqual(1, numItemsInRepository);
         }
         [Test]
         public void Repository_Get_ReturnsTheItemAddedToRepository()
@@ -50,7 +51,7 @@ namespace Interview.Tests
 
             //Assert
             var itemAddedInRepository = repository.Get(passengerId);
-            Assert.AreEqual(itemAddedInRepository.Id, passengerId);
+            Assert.AreEqual(passengerId, itemAddedInRepository.Id);
         }
         [Test]
         public void Repository_Delete_DeletesAGivenItemFromRepository()
@@ -74,8 +75,8 @@ namespace Interview.Tests
             var numItemsInRepositoryAferDelete = repository.GetAll().Count();
 
             //Assert
-            Assert.AreEqual(numItemsInRepositoryAferSave, 2);
-            Assert.AreEqual(numItemsInRepositoryAferDelete, 1);
+            Assert.AreEqual(2, numItemsInRepositoryAferSave);
+            Assert.AreEqual(1, numItemsInRepositoryAferDelete);
 
         }
         [Test]
@@ -116,7 +117,7 @@ namespace Interview.Tests
             var res = repository.Get(-1);
 
             //Assert
-            Assert.AreEqual(res, null);
+            Assert.AreEqual(null, res);
         }
 
         [Test]
@@ -128,6 +129,29 @@ namespace Interview.Tests
             //Act
             //Assert
             Assert.Throws<InvalidOperationException>(() => repository.Delete(100));
+        }
+        [Test]
+        public void Repository_Save_AddLargeNumberOfItemsStressTest()
+        {
+            //Arrange
+            var passengersList = new List<Passenger>();
+            var repository = new PassengerRepository(passengersList);
+
+            //Act
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            for(int i=0;i<100000;i++)
+            {
+                var passenger = new Passenger { Id = i };
+                repository.Save(passenger);
+            }
+
+            stopWatch.Stop();
+
+            //Assert
+            Assert.AreEqual(100000, repository.GetAll().Count());
+            Assert.AreEqual(60 * 1000, stopWatch.ElapsedMilliseconds);
         }
 
     }
