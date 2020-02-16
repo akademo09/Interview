@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Interview.Tests
@@ -17,7 +18,7 @@ namespace Interview.Tests
             var res = repository.GetAll();
 
             //Assert
-            Assert.AreEqual(res.Count(), 0);
+            Assert.AreEqual(res.ToList().Count(), 0);
         }
     }
 }
