@@ -46,6 +46,8 @@ namespace Interview
                 throw new ArgumentNullException(nameof(item));
             if(item.Id < 0)
                 throw new ArgumentOutOfRangeException("Invalid ID value passed - ID must be greater than zero.");
+            if(item.Name == null)
+                throw new ArgumentNullException("Null reference passed for Passenger Name");
 
             if ((from g in _passengerList where g.Id == item.Id select g).Count() != 0)
                 throw new InvalidOperationException("Item Id already exists");
