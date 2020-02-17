@@ -29,8 +29,7 @@ namespace Interview.Tests
             var repository = new PassengerRepository(new List<Passenger>());
 
             //Act
-            var passenger = new Passenger();
-            passenger.Id = 1;
+            var passenger = new Passenger {Id = 1, Name = "Name1"};
             repository.Save(passenger);
 
             //Assert
@@ -45,13 +44,14 @@ namespace Interview.Tests
 
             //Act
             int passengerId = 2;
-            var passenger = new Passenger();
-            passenger.Id = passengerId;
+            string passengerName = "Name1";
+            var passenger = new Passenger {Id = passengerId, Name = passengerName};
             repository.Save(passenger);
 
             //Assert
             var itemAddedInRepository = repository.Get(passengerId);
             Assert.AreEqual(passengerId, itemAddedInRepository.Id);
+            Assert.AreEqual(passengerName, itemAddedInRepository.Name);
         }
         [Test]
         public void Repository_Delete_DeletesAGivenItemFromRepository()
@@ -62,8 +62,8 @@ namespace Interview.Tests
             //Act
             int passengerId1 = 1;
             int passengerId2 = 2;
-            var passenger1 = new Passenger { Id = passengerId1 };
-            var passenger2 = new Passenger { Id = passengerId2 };
+            var passenger1 = new Passenger { Id = passengerId1, Name = "Name1"};
+            var passenger2 = new Passenger { Id = passengerId2, Name = "Name2"};
 
             repository.Save(passenger1);
             repository.Save(passenger2);
@@ -88,8 +88,10 @@ namespace Interview.Tests
             //Act
             int passengerId1 = 1;
             int passengerId2 = 1;
-            var passenger1 = new Passenger { Id = passengerId1 };
-            var passenger2 = new Passenger { Id = passengerId2 };
+            string passengerId1Name = "Name1";
+            string passengerId2Name = "Name2";
+            var passenger1 = new Passenger { Id = passengerId1, Name = passengerId1Name };
+            var passenger2 = new Passenger { Id = passengerId2 , Name = passengerId2Name};
 
             repository.Save(passenger1);
 
