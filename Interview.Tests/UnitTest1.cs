@@ -177,7 +177,7 @@ namespace Interview.Tests
 
             //Act
             //Assert
-            Assert.Throws<InvalidOperationException>(()=>repository.Save(passenger));
+            Assert.Throws<ArgumentOutOfRangeException>(()=>repository.Save(passenger));
         }
     }
 }
