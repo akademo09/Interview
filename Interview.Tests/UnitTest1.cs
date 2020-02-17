@@ -96,7 +96,8 @@ namespace Interview.Tests
             repository.Save(passenger1);
 
             //Assert
-            Assert.Throws<InvalidOperationException>(() => repository.Save(passenger2));
+            Assert.Throws<InvalidOperationException>(() => repository.Save(passenger2),
+                "Item Id already exists");
         }
         [Test]
         public void Repository_Save_NullItemPassedToSave()
@@ -106,7 +107,8 @@ namespace Interview.Tests
 
             //Act
             //Assert
-            Assert.Throws<ArgumentNullException>(() => repository.Save(null));
+            Assert.Throws<ArgumentNullException>(() => repository.Save(null),
+                "Null Passenger reference received");
         }
 
         [Test]
@@ -128,9 +130,12 @@ namespace Interview.Tests
             //Arrange
             var repository = new PassengerRepository(new List<Passenger>());
 
+            int invalidId = 100;
+
             //Act
             //Assert
-            Assert.Throws<InvalidOperationException>(() => repository.Delete(100));
+            Assert.Throws<InvalidOperationException>(() => repository.Delete(invalidId),
+                $"Item with id {invalidId} does not exist");
         }
         [Test]
         [Ignore("Need to revisit this test to optimize the Save() operation")]
@@ -162,7 +167,7 @@ namespace Interview.Tests
             //Arrange
             //Act
             //Assert
-            Assert.Throws<NullReferenceException>(ConstructorExceptionHelper);
+            Assert.Throws<NullReferenceException>(ConstructorExceptionHelper, "Null passenger list passed");
         }
 
         void ConstructorExceptionHelper()
@@ -179,7 +184,8 @@ namespace Interview.Tests
 
             //Act
             //Assert
-            Assert.Throws<ArgumentOutOfRangeException>(()=>repository.Save(passenger));
+            Assert.Throws<ArgumentOutOfRangeException>(()=>repository.Save(passenger),
+                "Invalid ID value passed - ID must be greater than zero.");
         }
 
         [Test]
@@ -191,7 +197,8 @@ namespace Interview.Tests
 
             //Act
             //Assert
-            Assert.Throws<ArgumentNullException>(()=> repository.Save(passenger));
+            Assert.Throws<ArgumentNullException>(()=> repository.Save(passenger),
+                "Null reference passed for Passenger Name");
         }
     }
 }

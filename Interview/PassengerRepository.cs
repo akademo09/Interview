@@ -43,7 +43,7 @@ namespace Interview
         public virtual void Save(Passenger item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item));
+                throw new ArgumentNullException("Null Passenger reference received");
             if(item.Id < 0)
                 throw new ArgumentOutOfRangeException("Invalid ID value passed - ID must be greater than zero.");
             if(item.Name == null)
