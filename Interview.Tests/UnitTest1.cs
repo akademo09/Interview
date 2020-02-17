@@ -11,7 +11,7 @@ namespace Interview.Tests
 
     {
         [Test]
-        public void Repository_Constructoy_CreatesEmptyRepository()
+        public void Repository_Constructor_CreatesEmptyRepository()
         {
             //Arrange
             var repository = new PassengerRepository(new List<Passenger>());
@@ -80,7 +80,7 @@ namespace Interview.Tests
 
         }
         [Test]
-        public void Repisitory_Save_DuplicateIdValueAddedToRepository()
+        public void Repository_Save_DuplicateIdValueAddedToRepository()
         {
             //Arrange 
             var repository = new PassengerRepository(new List<Passenger>());
@@ -97,7 +97,7 @@ namespace Interview.Tests
             Assert.Throws<InvalidOperationException>(() => repository.Save(passenger2));
         }
         [Test]
-        public void Repisitory_Save_NullItemPassedToSave()
+        public void Repository_Save_NullItemPassedToSave()
         {
             //Arrange 
             var repository = new PassengerRepository(new List<Passenger>());
@@ -121,7 +121,7 @@ namespace Interview.Tests
         }
 
         [Test]
-        public void Repository_Delete_NonExisingIdPassed()
+        public void Repository_Delete_NonExistingIdPassed()
         {
             //Arrange
             var repository = new PassengerRepository(new List<Passenger>());
