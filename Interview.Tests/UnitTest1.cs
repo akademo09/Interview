@@ -146,7 +146,7 @@ namespace Interview.Tests
 
             for(int i=0;i<100000;i++)
             {
-                var passenger = new Passenger { Id = i };
+                var passenger = new Passenger { Id = i , Name = i.ToString()};
                 repository.Save(passenger);
             }
 
