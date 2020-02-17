@@ -154,6 +154,19 @@ namespace Interview.Tests
             Assert.AreEqual(100000, repository.GetAll().Count());
             Assert.AreEqual(60 * 1000, stopWatch.ElapsedMilliseconds);
         }
+        [Test]
+        public void Repository_Constructor_NullParameterPassed()
+        {
+            //Arrange
+            //Act
+            //Assert
+            Assert.Throws<NullReferenceException>(ConstructorExceptionHelper);
+        }
+
+        void ConstructorExceptionHelper()
+        {
+            var repository = new PassengerRepository(null);
+        }
 
     }
 }
