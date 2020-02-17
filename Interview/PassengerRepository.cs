@@ -13,7 +13,7 @@ namespace Interview
 
         public PassengerRepository(ICollection<Passenger> passengersList)
         {
-            _passengerList = passengersList;
+            _passengerList = passengersList ?? throw new NullReferenceException("Null passenger list passed");
         }
         public virtual void Delete(int id)
         {
