@@ -179,5 +179,17 @@ namespace Interview.Tests
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(()=>repository.Save(passenger));
         }
+
+        [Test]
+        public void Repository_Save_InvalidEntityPassed()
+        {
+            //Arrange
+            var repository = new PassengerRepository(new List<Passenger>());
+            var passenger = new Passenger {Id = 1, Name = null};
+
+            //Act
+            //Assert
+            Assert.Throws<ArgumentNullException>(()=> repository.Save(passenger));
+        }
     }
 }
