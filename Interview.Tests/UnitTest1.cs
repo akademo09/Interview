@@ -168,5 +168,16 @@ namespace Interview.Tests
             var repository = new PassengerRepository(null);
         }
 
+        [Test]
+        public void Repository_Save_NegativeIdValuePassed()
+        {
+            //Arrange
+            var repository = new PassengerRepository(new List<Passenger>());
+            var passenger = new Passenger {Id = -1};
+
+            //Act
+            //Assert
+            Assert.Throws<InvalidOperationException>(()=>repository.Save(passenger));
+        }
     }
 }
